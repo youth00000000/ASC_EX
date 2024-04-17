@@ -16,6 +16,11 @@ main:
     pushq %rbp 
     pushq %rbx 
     
+# Answer:
+# 在函数调用过程中，需要保存和恢复调用者保存的寄存器。
+# %rbp 和 %rbx 是调用者保存的寄存器
+# 在改变它们的值之前需要先将它们的原始值压入栈中，函数返回时再从栈中弹出恢复
+
 # alloc memory for the array 
 # and then init the array 
     subq $56, %rsp 
@@ -48,10 +53,16 @@ main:
     # else 
     #   swap(&array[j], &array[j + 1]); 
     
+    movl %eax, %ecx
+    addl $1, %ecx
+    movl (%rsp,%eax,4), %edi
+    movl (%rsp,%ecx,4), %esi
+    cmpl %esi, %edi
     jle .L4 # continue 
     
     # prepare parameters for swap 
-    
+    leaq (%rsp,%eax,4), %rdi
+    leaq (%rsp,%ecx,4), %rsi
     call swap 
     jmp .L4 
     
@@ -62,7 +73,9 @@ main:
 
 .L3: 
 # TODO: Answer the question 
-# 这里 ebp 和 eax 对应于 C 语言中的哪些变量? 
+# 这里 ebp 和 eax 对应于 C 语言中的哪些变量?
+# ebp: 循环变量i
+# eax: 存储数组元素值的临时变量
     cmpl $9, %ebp 
     jg .L13 movl $0, %eax 
     jmp .L6 
