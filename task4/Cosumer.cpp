@@ -1,54 +1,94 @@
-/*
-* 这个程序无法运行或是会导致运行的结果不符合预期 
-* 利用学习的并发编程知识修改这段程序，使它能够正常运行
-*/
-#include <pthread.h> 
-#include <stdio.h> 
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-char buffer[1024]; 
+#define BUFFER_SIZE 1024
+#define NUM_CHARS 2048
 
-int write_idx = 0; 
-int read_idx = 0; 
+char buffer[BUFFER_SIZE];
+int write_idx = 0;
+int read_idx = 0;
+int count = 0; // to track the number of items in the buffer
 
-FILE* fp; 
+pthread_mutex_t lock;
+pthread_cond_t not_empty;
+pthread_cond_t not_full;
 
-void producer() { 
-    for (int i = 0; i < 2048; i++) { 
-        buffer[(write_idx++) % 1024] = (i++) % 26 + 'a'; 
-    } 
-}
+FILE* fp;
 
-void consumer() { 
-    for (int i = 0; i < 2048; i++) { 
-        putc(buffer[(read_idx++) % 1024], fp); 
-    } 
-}
-
-void check(FILE* fp) { 
-    for (int i = 0; i < 2048; i++) { 
-        char c = fgetc(fp); 
-        char another = i % 26 + 'a'; 
-        if (c = another) { 
-            printf("at line %d, expect %c, get %c", i, another, c); 
-        } 
+void* producer(void* arg) {
+    for (int i = 0; i < NUM_CHARS; i++) {
+        pthread_mutex_lock(&lock);
+        while (count == BUFFER_SIZE) // Buffer full
+            pthread_cond_wait(&not_full, &lock);
+        
+        buffer[write_idx % BUFFER_SIZE] = i % 26 + 'a';
+        write_idx++;
+        count++;
+        
+        pthread_cond_signal(&not_empty);
+        pthread_mutex_unlock(&lock);
     }
-    printf("Finish, no Error\n"); 
+    return NULL;
 }
 
-int main() { 
-    fp = fopen("tmp.txt", "w+"); 
-    
-    pthread_t producer_thread; 
-    pthread_t consumer_thread; 
-    pthread_create(&producer_thread, NULL, (void* (*)(void*))producer, NULL); 
-    pthread_create(&consumer_thread, NULL, (void* (*)(void*))consumer, NULL);
+void* consumer(void* arg) {
+    for (int i = 0; i < NUM_CHARS; i++) {
+        pthread_mutex_lock(&lock);
+        while (count == 0) // Buffer empty
+            pthread_cond_wait(&not_empty, &lock);
+        
+        char c = buffer[read_idx % BUFFER_SIZE];
+        putc(c, fp);
+        read_idx++;
+        count--;
+        
+        pthread_cond_signal(&not_full);
+        pthread_mutex_unlock(&lock);
+    }
+    return NULL;
+}
 
-    pthread_join(producer_thread, NULL); 
-    pthread_join(consumer_thread, NULL); 
-    
-    fclose(fp); 
-    fp = fopen("tmp.txt", "r"); 
-    check(fp); 
-    
+void check(FILE* fp) {
+    rewind(fp); // Ensure we start reading from the beginning of the file
+    for (int i = 0; i < NUM_CHARS; i++) {
+        char c = fgetc(fp);
+        char expected = i % 26 + 'a';
+        if (c != expected) {
+            printf("Error at byte %d: expected %c, got %c\n", i, expected, c);
+        }
+    }
+    printf("Finish, no error found\n");
+}
+
+int main() {
+    fp = fopen("tmp.txt", "w+");
+    if (fp == NULL) {
+        perror("Failed to open file");
+        return 1;
+    }
+
+    pthread_mutex_init(&lock, NULL);
+    pthread_cond_init(&not_empty, NULL);
+    pthread_cond_init(&not_full, NULL);
+
+    pthread_t producer_thread, consumer_thread;
+    pthread_create(&producer_thread, NULL, producer, NULL);
+    pthread_create(&consumer_thread, NULL, consumer, NULL);
+
+    pthread_join(producer_thread, NULL);
+    pthread_join(consumer_thread, NULL);
+
+    fclose(fp);
+
+    fp = fopen("tmp.txt", "r");
+    check(fp);
+    fclose(fp);
+
+    pthread_mutex_destroy(&lock);
+    pthread_cond_destroy(&not_empty);
+    pthread_cond_destroy(&not_full);
+
     return 0;
 }

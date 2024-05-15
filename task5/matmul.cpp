@@ -6,7 +6,6 @@
 
 long int Mkltime, Opttime;
 
-
 class matrix {
 public:
     friend bool check(const matrix &a, const matrix &b);
