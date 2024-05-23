@@ -1,0 +1,3 @@
+/media/user/Data/biancheng/code/ASC_EX/build/CMakeFiles/matmul.dir
+/media/user/Data/biancheng/code/ASC_EX/build/CMakeFiles/edit_cache.dir
+/media/user/Data/biancheng/code/ASC_EX/build/CMakeFiles/rebuild_cache.dir

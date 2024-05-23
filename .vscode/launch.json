@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/media/user/Data/biancheng/code/ASC_EX/task5",
-      "program": "/media/user/Data/biancheng/code/ASC_EX/task5/build/Debug/outDebug",
+      "cwd": "/media/user/Data/biancheng/code/ASC_EX/Task3",
+      "program": "/media/user/Data/biancheng/code/ASC_EX/Task3/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
