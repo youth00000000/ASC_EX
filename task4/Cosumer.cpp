@@ -19,14 +19,19 @@ FILE* fp;
 
 void* producer(void* arg) {
     for (int i = 0; i < NUM_CHARS; i++) {
+        // 获取互斥锁lock,确保只有一个线程能够访问共享资源
         pthread_mutex_lock(&lock);
+
+        // 如果缓冲区满就等待条件变量not_full,然后释放互斥锁lock
         while (count == BUFFER_SIZE) // Buffer full
             pthread_cond_wait(&not_full, &lock);
         
+        //否则生产出一个字符放入缓冲区,并更新相关变量
         buffer[write_idx % BUFFER_SIZE] = i % 26 + 'a';
         write_idx++;
         count++;
         
+        //更新条件变量not_empty,并释放互斥锁lock,让消费者线程可以访问共享资源
         pthread_cond_signal(&not_empty);
         pthread_mutex_unlock(&lock);
     }
@@ -35,15 +40,19 @@ void* producer(void* arg) {
 
 void* consumer(void* arg) {
     for (int i = 0; i < NUM_CHARS; i++) {
+        // 获取互斥锁lock,确保只有一个线程能够访问共享资源
         pthread_mutex_lock(&lock);
+        // 如果缓冲区为空就等待条件变量not_empty,然后释放互斥锁lock
         while (count == 0) // Buffer empty
             pthread_cond_wait(&not_empty, &lock);
         
+        // 否则读取一个字符,并更新相关变量
         char c = buffer[read_idx % BUFFER_SIZE];
         putc(c, fp);
         read_idx++;
         count--;
         
+        // 更新条件变量not_full,并释放互斥锁lock,让生产者线程可以访问共享资源
         pthread_cond_signal(&not_full);
         pthread_mutex_unlock(&lock);
     }

@@ -1,0 +1,14 @@
+[
+{
+  "directory": "D:/biancheng/code/ASC_EX/task6/build/src",
+  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/task6.dir/includes_CXX.rsp -g -fopenmp -o CMakeFiles\\task6.dir\\CV2.cpp.obj -c D:\\biancheng\\code\\ASC_EX\\task6\\src\\CV2.cpp",
+  "file": "D:/biancheng/code/ASC_EX/task6/src/CV2.cpp",
+  "output": "src/CMakeFiles/task6.dir/CV2.cpp.obj"
+},
+{
+  "directory": "D:/biancheng/code/ASC_EX/task6/build/src",
+  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/task6.dir/includes_CXX.rsp -g -fopenmp -o CMakeFiles\\task6.dir\\main.cpp.obj -c D:\\biancheng\\code\\ASC_EX\\task6\\src\\main.cpp",
+  "file": "D:/biancheng/code/ASC_EX/task6/src/main.cpp",
+  "output": "src/CMakeFiles/task6.dir/main.cpp.obj"
+}
+]

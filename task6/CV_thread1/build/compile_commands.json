@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/media/user/Data/biancheng/code/ASC_EX/task6/CV_thread1/build",
+  "command": "/usr/bin/g++ -I/media/user/Data/biancheng/code/ASC_EX/task6/CV_thread1/src/../include -g -fopenmp -o src/CMakeFiles/task6.dir/CV2_thread.cpp.o -c /media/user/Data/biancheng/code/ASC_EX/task6/CV_thread1/src/CV2_thread.cpp",
+  "file": "/media/user/Data/biancheng/code/ASC_EX/task6/CV_thread1/src/CV2_thread.cpp"
+},
+{
+  "directory": "/media/user/Data/biancheng/code/ASC_EX/task6/CV_thread1/build",
+  "command": "/usr/bin/g++ -I/media/user/Data/biancheng/code/ASC_EX/task6/CV_thread1/src/../include -g -fopenmp -o src/CMakeFiles/task6.dir/main.cpp.o -c /media/user/Data/biancheng/code/ASC_EX/task6/CV_thread1/src/main.cpp",
+  "file": "/media/user/Data/biancheng/code/ASC_EX/task6/CV_thread1/src/main.cpp"
+}
+]

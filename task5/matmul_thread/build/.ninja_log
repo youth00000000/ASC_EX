@@ -1,0 +1,5 @@
+# ninja log v5
+0	575	1718328035287465600	CMakeFiles/matmul.dir/matmul_thread.cpp.o	3f811c7dcebd45d4
+575	672	1718328035383460800	matmul	173b33c8d4dc7946
+1	557	1718328615382185200	CMakeFiles/matmul.dir/matmul_thread.cpp.o	3f811c7dcebd45d4
+557	658	1718328615482179000	matmul	173b33c8d4dc7946

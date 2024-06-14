@@ -1,0 +1,5 @@
+/media/user/Data/biancheng/code/ASC_EX/task6/build/CMakeFiles/edit_cache.dir
+/media/user/Data/biancheng/code/ASC_EX/task6/build/CMakeFiles/rebuild_cache.dir
+/media/user/Data/biancheng/code/ASC_EX/task6/build/src/CMakeFiles/task6.dir
+/media/user/Data/biancheng/code/ASC_EX/task6/build/src/CMakeFiles/edit_cache.dir
+/media/user/Data/biancheng/code/ASC_EX/task6/build/src/CMakeFiles/rebuild_cache.dir

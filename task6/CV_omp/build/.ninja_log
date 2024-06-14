@@ -1,0 +1,11 @@
+# ninja log v5
+0	113	1718285650309942100	src/CMakeFiles/task6.dir/main.cpp.o	b3644e32c73e5bf
+0	137	1718285650333941900	src/CMakeFiles/task6.dir/CV2.cpp.o	2b57103bf41b10fd
+137	162	1718285650357941700	/media/user/Data/biancheng/code/ASC_EX/task6/bin/task6	b352725a4648cc43
+1	120	1718329918181912100	src/CMakeFiles/task6.dir/main.cpp.o	b3644e32c73e5bf
+0	140	1718329918205914500	src/CMakeFiles/task6.dir/CV2.cpp.o	2b57103bf41b10fd
+141	168	1718329918229916900	/media/user/Data/biancheng/code/ASC_EX/task6/bin/task6	b352725a4648cc43
+1	116	1718330054730795100	src/CMakeFiles/task6.dir/main.cpp.o	b3644e32c73e5bf
+116	144	1718330054762798000	/media/user/Data/biancheng/code/ASC_EX/task6/bin/task6	b352725a4648cc43
+0	112	1718330083957399200	src/CMakeFiles/task6.dir/main.cpp.o	b3644e32c73e5bf
+112	138	1718330083989402000	/media/user/Data/biancheng/code/ASC_EX/task6/bin/task6	b352725a4648cc43

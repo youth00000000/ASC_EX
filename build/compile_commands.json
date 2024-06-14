@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/media/user/Data/biancheng/code/ASC_EX/build",
-  "command": "/usr/bin/g++ -isystem /opt/intel/oneapi/mkl/2024.1/include -isystem /opt/openmp/include -g -DMKL_ILP64 -m64 -fopenmp -o CMakeFiles/matmul.dir/matmul.cpp.o -c /media/user/Data/biancheng/code/ASC_EX/task5/matmul.cpp",
-  "file": "/media/user/Data/biancheng/code/ASC_EX/task5/matmul.cpp"
-}
-]
